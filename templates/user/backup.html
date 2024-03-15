@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css_file %}
+<link rel="stylesheet" href="{% static "css/contacts.min.css" %}" />
+<script src="{% static "js/jquery-3.6.0.min.js" %}"></script>
+{% endblock css_file %}
+{% block content %}
+<main>
+    <!-- Contact info section start -->
+    <section class="contacts_secondary section">
+        <div class="container d-xl-flex align-items-center justify-content-between">
+            <div class="contacts_secondary-rating">
+                <h2 class="contacts_secondary-header">Babul Ilm - Knowledge is a door to the heart.</h2>
+                <div class="rating">
+                    <div class="container">
+                        <!-- Rating section content -->
+                    </div>
+                </div>
+            </div>
+            <div class="contacts_secondary-form" data-aos="fade-up">
+                <div id="output" class="contacts" data-aos="fade-up">
+                    <div class="contacts_header">
+                        <h2 class="contacts_header-title">Let's Answer Your Questions</h2>
+                        <p class="contacts_header-text">
+                            We will try to respond as soon as possible.
+                        </p>
+                    </div>
+                    <form class="contacts_form form d-sm-flex flex-wrap justify-content-between" action="post" method="post" id="form" data-type="feedback">
+                        <!-- Contact form -->
+                    </form>
+                </div>
+                <div id="output2" class="contacts" data-aos="fade-up">
+                    <p id="my_msg"></p><br>
+                    <p>Message: <b id='my_txt'></b><br></p>
+                    <p>Sender: <b id="my_nme"></b></p><br>
+                    <button class="btn theme-element theme-element--accent" id="refresh_message_page">Send Another Message</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="contacts_main section">
+        <div class="container container--contacts d-xl-flex align-items-center">
+            <div class="contacts_info col-xl-7" data-aos="fade-up">
+                <div class="contacts_info-header">
+                    <h2 class="contacts_info-header_title">Connections</h2>
+                    <p class="contacts_info-header_text">
+                        You can reach us through these connections.
+                    </p>
+                </div>
+                <div class="contacts_info-main">
+                    <!-- Contact information -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact info section end -->
+</main>
+<script src="{% static "js/common.min.js" %}"></script>
+<script type="text/javascript">
+    // JavaScript code for handling interactions
+</script>
+{% endblock content %}
+{% extends "base.html" %}
+{% load static %}
+{% block css_file %}
+    <script src="{% static "js/jquery-3.6.0.min.js" %}"></script>
+{% endblock css_file %}
+{% block content %}
+{% load account %}            
+<main>
+    <!-- Benefits section start -->
+    <section class="about_benefits section">
+        <div class="container">
+            <div class="about_benefits-header d-md-flex align-items-center justify-content-between">
+                <h1 data-aos="fade-up">{% user_display user %}</h1>
+                <h4 data-aos="fade-up">Number of Lessons: {{contents.count}}</h4><br>
+            </div>
+            <hr data-aos="fade-left"><br>
+            {% if like %}   
+            <h3  data-aos="fade-left">Likes</h3><h4>see all</h4>
+            {% for post in like %}
+            {{post.title}}
+            {{post.id}}
+            <br>
+            {% endfor %}  
+            {% endif %}
+            <hr data-aos="fade-left"><br>
+            {% if sorduklarim %}  
+            <div id="eff">
+                <h3 id="output" data-aos="fade-left">My Questions</h3>
+                <h4>all</h4>
+            </div>
+            {% for soru in sorduklarim %}
+            <br>
+            <span class="main_amenities-item d-inline-flex align-items-center">
+                <a><i name="{{ soru.id }}" id="co" class='likin bx bxs-x-circle'><b> {{soru.text|truncatewords:4}} </b></i></a>
+            </span>
+            {% endfor %}
+            {% endif %}
+        </div> 
+    </section> 
+</main>
+<script type="text/javascript">
+    // JavaScript code for handling interactions
+</script>
+{% endblock content %}

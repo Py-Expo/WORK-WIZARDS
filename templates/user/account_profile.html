@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css_file %}
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<style type="text/css">
+/* Shake animation */
+.vibrate {
+    animation: shake-animation 6s ease infinite;
+    transform-origin: 50% 50%;
+}
+@keyframes shake-animation {
+    0% { transform: translate(0,0); }
+    1.78571% { transform: translate(5px,0); }
+    3.57143% { transform: translate(0,0); }
+    5.35714% { transform: translate(5px,0); }
+    7.14286% { transform: translate(0,0); }
+    8.92857% { transform: translate(5px,0); }
+    10.71429% { transform: translate(0,0); }
+    100% { transform: translate(0,0); }
+}
+/* Profile styling */
+.profile {
+    margin: auto;
+    background-color: #fff;
+    border-radius: 40px;
+    width: 480px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.profile .photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 30px;
+    border: 15px solid rgba(#f6f2ff, 0.7);
+    object-fit: cover;
+}
+.profile .name {
+    margin-top: 24px;
+    font-size: 22px;
+    font-weight: bold;
+}
+.profile .details {
+    font-size: 13px;
+    font-weight: 400;
+    width: 50%;
+    margin-top: 8px;
+    line-height: 1.3;
+    text-align: center;
+}
+.profile .buttons {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+}
+.profile .buttons .button {
+    width: 186px;
+    height: 54px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 500;
+    margin-left: 12px;
+    cursor: pointer;
+}
+.profile .buttons .button:first-child {
+    margin-left: 0px;
+}
+.profile .buttons .button svg {
+    height: 22px;
+    margin-right: 4px;
+}
+/* Avatar styling */
+.avatar {
+    padding: .3em;
+    margin-left: .3em;
+    margin-top: .3em;
+    height: 8.23em;
+    width: 8.23em;
+    border-radius: 81em;
+}
+/* Hidden class */
+.hidden {
+    display: none;
+}
+</style>
+{% endblock css_file %}
+{% block content %}
+<main>
+    <div class="profile">
+        <form name="upload-image" id="uploadPP">
+            <input type="file" accept="image/png, image/gif, image/jpeg, image/jpg" class="hidden" id="uploadFile"/>
+        </form>
+        <div id="preview"></div>
+        <div style="text-align:right;">
+            <i id='uploadTrigger' style="border-radius:25px;border:2px black solid;padding:3px;cursor:pointer;position:absolute;" title="Edit" class=' bx bxs-pencil'></i>
+            {% for i in user_pp_statue %}
+            <img class="avatar" id="avatar" src="{{i.image.url}}" alt=""/>
+            {% endfor %}
+        </div>
+        <span style="margin-top: 24px;font-size: 45px;font-weight: bold;">@{% user_display user %}</span>
+        <span style="font-size: 17px;font-weight: 400;width: 50%;margin-top: 8px;line-height: 1.3;text-align: center;" id="bio">
+            <!-- Bio Form -->
+        </span>
+    </div>
+    <!-- Benefits section -->
+    <section class="about_benefits section">
+        <div class="container">
+            {% if like %}
+            <section id="dersler" class="rooms section--blockbg section--nopb">
+                <!-- Room section content -->
+            </section>
+            {% endif %}
+            <!-- Questions section -->
+            {% if sorduklarim %}
+            <div id="eff">
+                <h3 id="output" data-aos="fade-left">Questions</h3>
+                <h5 style="margin-bottom:5px;" id="edit-click">Click to Edit</h5>
+            </div>
+            <div id="questionss" style="font-size:19px; margin:5px;">
+                <!-- Question list -->
+            </div>
+            {% endif %}
+        </div>
+    </section>
+</main>
+<script type="text/javascript">
+    // JavaScript code for handling interactions
+</script>
+{% endblock content %}

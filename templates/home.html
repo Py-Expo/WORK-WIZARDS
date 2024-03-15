@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block data_page %}
+   {{ data_page }}
+{% endblock data_page %}
+
+{% block content %}
+    <!-- homepage content start -->
+    <main>
+        <!-- hero section start -->
+        <section class="hero section" id="upp">
+            <div class="container container--hero d-lg-flex align-items-center justify-content-between">
+                <div class="hero_main">
+                    <h1 class="hero_main-title" data-aos="fade-up">English Berry — Learn English Platform</h1>
+                    <div class="hero_main-content d-flex">
+                        <span class="line" data-aos="fade-up" data-aos-delay="50"></span>
+                        <p class="text" data-aos="fade-up" data-aos-delay="100">
+                            You can learn English by practicing every day.
+                        </p>
+                    </div>
+                    <div class="wrapper" data-aos="fade-left">
+                        <a class="about_main-action_item btn theme-element theme-element--accent">Watch</a>
+                    </div>
+                </div>
+                <div class="hero_media" data-aos="zoom-in">
+                    <picture>
+                        <source data-srcset="{% static 'img/main.jpg' %}" srcset="{% static 'img/main.jpg' %}" />
+                        <img class="lazy" data-src="{% static 'img/main.jpg' %}" src="{% static 'img/main.jpg' %}" alt="media" />
+                    </picture>
+                </div>
+            </div>
+        </section>
+        <!-- hero section end -->
+
+        <!-- lessons section start -->
+        <section id="lessons" class="rooms section--blockbg section--nopb">
+            <div class="block"></div>
+            <div class="container">
+                <!-- lessons content -->
+            </div>
+        </section>
+        <!-- lessons section end -->
+
+        <!-- about section start -->
+        <section class="about section">
+            <div class="container container--about d-xl-flex align-items-center">
+                <!-- about content -->
+            </div>
+        </section>
+        <!-- about section end -->
+
+        <!-- latest section start -->
+        <section class="latest section section--blockbg">
+            <div class="block"></div>
+            <div class="container">
+                <!-- latest content -->
+            </div>
+        </section>
+        <!-- latest section end -->
+
+        <!-- contacts section start -->
+        <section class="contacts section">
+            <div class="container container--contacts d-xl-flex align-items-center">
+                <!-- contacts content -->
+            </div>
+        </section>
+        <!-- contacts section end -->
+    </main>
+{% endblock content %}
+
+<!-- Additional HTML content, such as modal divs or script tags, can go outside of the content block -->

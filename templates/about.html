@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css_file %}
+<link rel="stylesheet" href="{% static "css/about.min.css" %}" />
+<script src="{% static "js/jquery-3.6.0.min.js" %}"></script>
+{% endblock css_file %}
+{% block content %}
+<main>
+
+    <!-- Benefits section start -->
+    <section class="about_benefits section">
+        <div class="container">
+            <div class="about_benefits-header d-md-flex align-items-center justify-content-between">
+                <h2 class="about_benefits-header_title" data-aos="fade-up">About Us</h2>
+            </div>
+            <br>
+            {% for about_us in hakkimizda %}
+            <p data-aos="fade-left">{{about_us.text}}</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Rules section start -->
+    <section class="about_rules section">
+        <div class="container d-xl-flex justify-content-between align-items-center">
+            <div class="about_rules-main col-xl-5">
+                <h3 class="about_rules-main_header" data-aos="fade-right">A Few Basic Tips to Learn English</h3>
+                <ul class="about_rules-main_list">
+                    <li id="soeu" class="list-item d-flex align-items-baseline" data-aos="fade-up">
+                        <i class="icon-check icon"></i>
+                        Adopt a process-oriented approach, not result-oriented.
+                    </li>
+                    <li class="list-item d-flex align-items-baseline" data-aos="fade-up">
+                        <i class="icon-check icon"></i>
+                        Be brave.
+                    </li>
+                    <li class="list-item d-flex align-items-baseline" data-aos="fade-up">
+                        <i class="icon-check icon"></i>
+                        Obtain a reliable dictionary.
+                    </li>
+                    <li class="list-item d-flex align-items-baseline important" data-aos="fade-up">
+                        <i class="icon-check icon"></i>
+                        Don't get stuck on grammar issues.
+                    </li>
+                </ul>
+            </div>
+
+            <div id="output" class="contacts col-xl-6" data-aos="fade-up">
+                <div class="contacts_header">
+                    <h2 class="contacts_header-title" style="padding:10px;">Having Trouble? Let's Solve It</h2>
+                    <p class="contacts_header-text">
+                        We will try to respond to your questions as soon as possible.
+                    </p>
+                </div>
+                <form class="contacts_form form d-sm-flex flex-wrap justify-content-between" action="post" method="post" id="form" data-type="feedback" style="padding:15px;">
+                    {% if user.is_authenticated %}
+                    <input class="field required" value="{{request.user.username}}" id="feedbackName" type="hidden" placeholder="" />
+                    {% else %}
+                    <div class="field-wrapper">
+                        <label class="label" for="name">
+                            <i class="icon-user icon"></i>
+                        </label>
+                        <input class="field required" id="name" type="text" placeholder="Enter your name or Create an account" />
+                    </div>
+                    {% endif %}
+                    <div class="field-wrapper">
+                        <label class="label" for="feedbackEmail">
+                            <i class="icon-email icon"></i>
+                        </label>
+                        <input class="field required" id="email" type="email" data-type="email" placeholder="Email address" />
+                    </div>
+                    <textarea class="field textarea required" id="text" type="text" placeholder="Message"></textarea>
+                    <button class="btn theme-element theme-element--accent" type="submit">Send</button>
+                </form>
+            </div>
+
+            <div id="output2" class="contacts col-xl-6" data-aos="fade-up">
+                <h2 id="my_msg" class="contacts_header-title"></h2><br>
+                <p>Message: <b id='my_txt'></b><br></p>
+                <p>Sender: <b id="my_nme"></b></p>
+                <p>Email: <b id="my_mail"></b></p>
+                <br>
+                <button class="btn theme-element theme-element--accent" id="refresh_message_page">Try Again</button>
+            </div>
+        </div>
+    </section>
+    <!-- Rules section end -->
+
+    <!-- FAQ section start -->
+    {% if posts %}
+    <section class="about_faq section">
+        <div class="container">
+            <div class="about_faq-header d-lg-flex justify-content-between align-items-center">
+                <h2 class="about_faq-header_title">Frequently Asked Questions</h2>
+                <p class="about_faq-header_text">We have briefly answered them. You can watch detailed answers on our YouTube channel.</p>
+            </div>
+            <div class="about_faq-main d-grid">
+                <!-- FAQ items -->
+                {% for post in posts %}
+                <div class="accordion_component-item">
+                    <div class="item-wrapper d-flex flex-column justify-content-between">
+                        <h4 class="accordion_component-item_header d-flex justify-content-between align-items-center collapsed" data-bs-toggle="collapse" data-bs-target="#item-{{post.id}}" aria-expanded="true">
+                            {{post.title}}
+                            <span class="wrapper">
+                                <i class="icon-chevron_down icon transform"></i>
+                            </span>
+                        </h4>
+                        <div id="item-{{post.id}}" class="accordion-collapse collapse show">
+                            <div class="accordion_component-item_body">
+                                <p>{{post.paragraph1}}</p>
+                                {% if post.paragraph2 %}
+                                <br>
+                                <p>{{post.paragraph2}}</p>
+                                {% endif %}
+                                {% if post.paragraph3 %}
+                                <br>
+                                <p>{{post.paragraph3}}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+    <!-- FAQ section end -->
+
+    <!-- Footer section start -->
+    <section class="about_footer section">
+        <div class="container d-md-flex flex-wrap justify-content-between">
+            <div class="about_footer-block about_footer-block--quote d-md-flex align-items-center">
+                <div class="media" data-aos="fade-right">
+                    <picture>
+                        <source data-srcset="{% static "img/placeholder.jpg" %}" srcset="{% static "img/placeholder.jpg" %}" />
+                        <img class="lazy" data-src="{% static "img/placeholder.jpg" %}" src="{% static "img/placeholder.jpg" %}" alt="media" />
+                    </picture>
+                </div>
+                <div class="main">
+                    <q class="main_quote h4" data-aos="fade-left">
+                        You will win if you don't quit.
+                    </q>
+                    <div class="main_author d-flex flex-column flex-md-row">
+                        <span style="color:white" class="name" data-aos="fade-left" data
